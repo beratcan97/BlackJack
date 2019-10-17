@@ -1,9 +1,9 @@
-<div class="d-flex justify-content-center iosBgColor">
+<div class="height100vh bg-success d-flex justify-content-center align-items-center">
   <ng-container *ngIf="isLoaded; else loadingScreen">
+    <div class="d-flex justify-content-between flex-column height100vh">
 
-    <div class="d-flex justify-content-between flex-column vh-100-height vh-100-width container">
-      <!--  Dealer cards  -->
       <div class="d-flex flex-row justify-content-center mt-5">
+      <!--  Dealer cards  -->
         <ng-container *ngFor="let card of dealerCards; let i = index">
           <ng-container *ngIf="i == 0 && !dealersTurn; else showCards">
             <img id="{{i}}" class="card" src="assets/cards/backside.png">
@@ -12,24 +12,25 @@
             <img id="{{i}}" class="card" src="assets/cards/{{card}}.svg">
           </ng-template>
         </ng-container>
-        <p *ngIf="dealersTurn">{{dealerValue}}</p>
+        <h1 class="text-white" *ngIf="dealersTurn">({{dealerValue}})</h1>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <!--Controllers-->      
+      <div class="d-flex justify-content-center py-5">
         <div class="d-flex flex-column">
-          <div>
+          <div class="text-center">
             <ng-container *ngIf="!gameRunning && !message">
-              <img (click)="startNewGame()" class="control" src="assets/deal.png">
+              <button type="button" class="btn btn-warning" (click)="startNewGame()">Deal</button>
             </ng-container>
             <ng-container *ngIf="!gameRunning && message">
-              <img (click)="restartGame()" class="control" src="assets/deal.png">
+              <button type="button" class="btn btn-warning" (click)="restartGame()">Deal</button>
             </ng-container>
             <ng-container *ngIf="gameRunning">
-              <img (click)="stand()" class="control" src="assets/stand.png">
-              <img (click)="hit()" class="control" src="assets/hit.png">
+                <button type="button" class="btn btn-danger" (click)="stand()">Stand</button>
+                <button type="button" class="btn btn-primary" (click)="hit()">Hit</button>
             </ng-container>
           </div>
-          <div>
+          <div class="text-center">
             <h1>{{message}}</h1>
           </div>
         </div>
@@ -40,11 +41,17 @@
         <ng-container *ngFor="let card of playerCards; let i = index">
           <img id="{{i}}" class="card" src="assets/cards/{{card}}.svg">
         </ng-container>
-        <p>{{playerValue}}</p>
+        <h1 class="text-white" *ngIf="playerCards[0]">({{playerValue}})</h1>
       </div>
     </div>
   </ng-container>
+
   <ng-template #loadingScreen>
-    <img src="assets/bootScreen.gif" alt="card generator icon" width="100%" height="100%">
+    <div class="text-center">
+      <h1>Blackjack</h1>
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
   </ng-template>
 </div>

@@ -1,11 +1,6 @@
-.container {
-    background-color: #477148;
+.btn {
+    width: 25vw;
 }
-
-.card {
-    height: 6rem;
-}
-
-.control {
-    height: 25vh;
+.btn-warning {
+    width: 50vw;
 }

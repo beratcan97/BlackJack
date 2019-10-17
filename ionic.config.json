@@ -1,5 +1,7 @@
 {
   "name": "BlackJack",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
